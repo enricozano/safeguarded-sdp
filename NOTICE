@@ -1,0 +1,47 @@
+NOTICE -- third-party code and data in this repository
+=======================================================
+
+Original code: safeguarded_sdp/ and benchmark/ (except the files listed below),
+licensed under the MIT License (see LICENSE). The files listed below keep their own
+licences.
+
+1. Hamiltonian Updates, Henze et al.        -> benchmark/third_party/hu_henze/
+   Henze, Tran, Ostermann, Kueng, de Wolff, Gross, "Solving quadratic binary
+   optimization problems using quantum SDP methods: Non-asymptotic running time
+   analysis" (arXiv:2502.15426); code from Zenodo artifact 10.5281/zenodo.14871936.
+   BSD-3-Clause (code) / CC-BY-4.0 (data; not applicable here, this directory
+   contains code only), per the artifact's own LICENSE file (see
+   benchmark/third_party/hu_henze/LICENSE). Files included unmodified; the unused
+   rounding module is omitted. Used as the HU baseline of the precision-scaling
+   experiment; safeguarded_sdp/ does not import it.
+
+2. Hamiltonian Updates, as shipped in Ostermann et al.'s benchmark
+                                             -> benchmark/third_party/hu_ostermann/
+   Ostermann et al., "Benchmarking of Quantum and Classical SDP Relaxations for QUBO
+   Formulations of Real-World Logistics Problems" (arXiv:2503.10801), repository
+   sdp_qubo_benchmarking, directory hu_sdp/src/. Henze et al.'s HU code, so the same
+   BSD-3-Clause terms as item 1 (see its LICENSE). Unmodified. Default HU baseline of
+   the logistics experiment (it produced the published logistics HU numbers).
+
+3. QUBO -> SDP conversion                    -> benchmark/experiments/qubo_sdp.py
+   convert / convert_back / get_const are numerically verbatim from hu_sdp/src/
+   cost_matrices.py of the same Ostermann et al. repository. BSD-3-Clause (item 1).
+
+4. Synthetic instance generator              -> benchmark/experiments/synthetic.py
+   Seeded re-implementation of gen_C_til from item 1; same distribution.
+
+5. Logistics instances and reference results -> benchmark/data/logistics/
+   asp/*.csv.gz, vrp/*.csv.gz (QUBO matrices; gzip-compressed copies of the original
+   CSV files, numerically identical), reference/optima.csv, reference/*/Results_*.csv
+   from the Ostermann et al. benchmark (instances from industry partner 4flow SE).
+   MIT-licensed per that repository's README.
+
+6. Portfolio returns                         -> benchmark/data/portfolio/
+   Daily adjusted returns of liquid US large caps, 2018-2024, downloaded once from
+   Yahoo Finance via the yfinance package. Included only so the benchmark runs
+   offline; subject to Yahoo's terms of use.
+
+The vendored code is not endorsed by, and does not imply endorsement from, its
+original authors. The BSD-3-Clause licence requires that its copyright notice and
+licence text travel with redistributed copies; keep this file and the LICENSE files
+above.

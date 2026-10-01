@@ -1,0 +1,14 @@
+This directory vendors the Hamiltonian Updates implementation (hamiltonian_updates.py,
+hu_binary_search.py, gate_count.py) as included in the `sdp_qubo_benchmarking`
+repository (Ostermann, Garnowski, Henze, Jha, Dia, Fiand, Gross, Gross, Nowak,
+de Wolff; arXiv:2503.10801).
+
+That repository's own README states its own code and data are MIT-licensed, but
+that this specific HU implementation is "licensed under the BSD-3-Clause License
+and the Creative Commons Attribution 4.0 International (CC-BY 4.0) License",
+citing Henze et al., DOI 10.5281/zenodo.14871936 -- the same source as
+third_party/hu_henze/. The BSD-3-Clause terms are reproduced there and apply here
+identically; see third_party/hu_henze/LICENSE.
+
+None of the MIT-licensed code from the `sdp_qubo_benchmarking` repository (its own
+glue code, the GAMS qubo_solve tool, ManiSDP-matlab) is vendored in this directory.

@@ -1,0 +1,6 @@
+size,optimum,note
+ASP_n30,246.78499690,Ostermann et al. ASP n=30 true optimum (Gurobi)
+ASP_n60,820.08374780,Ostermann et al. ASP n=60 true optimum (Gurobi)
+ASP_n90,1373.15611941,Ostermann et al. ASP n=90 true optimum (Gurobi)
+VRP_n11,6254.18748000,Ostermann et al. OVRP n=11 true optimum (Gurobi)
+VRP_n15,3036.53740273,Ostermann et al. OVRP n=15 true optimum (Gurobi)
