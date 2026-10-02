@@ -21,8 +21,7 @@ benchmark/
     common.py                 grids, sequential run loop, CSV output
     diag_dual.py, synthetic.py, qubo_sdp.py, portfolio_instances.py, lift.py
                               problem instances and their Gibbs duals
-  make_figures.py           figures and tables from the results
-  figures/                  the figures (PDF, PNG) and tables (CSV) it produces
+  figures/                  the paper's figures (PNG) and make_figures.py, which produces them
   results/                  results of the three experiments (CSV)
   data/                     logistics QUBOs and reference optima, portfolio returns
   third_party/              Hamiltonian Updates of Henze et al. and of Ostermann et al.
@@ -44,25 +43,20 @@ pip install -r requirements.txt
 
 All data is included; nothing is downloaded.
 
-## Figures and tables
+## Figures
 
 ```bash
-python benchmark/make_figures.py
+python benchmark/figures/make_figures.py
 ```
 
-reads `benchmark/results/` and writes, in a few seconds, `benchmark/figures/` (PDF and
-PNG) and `benchmark/figures/tables/` (CSV):
+reads `benchmark/results/` and writes, in a few seconds, the paper's figures to
+`benchmark/figures/` (PNG):
 
 | output | content |
 |---|---|
-| `precision_N128_hu_vs_lbfgs` | oracle calls vs. precision at N = 128: Hamiltonian Updates and the safeguarded solver |
-| `precision_qubo_all_N` | safeguarded solver, oracle calls vs. precision for N = 16 .. 1024 |
-| `dimension_qubo` | safeguarded solver, oracle calls vs. N at fixed precision |
-| `precision_portfolio` | portfolio, oracle calls vs. precision for n = 6 .. 14 assets |
-| `dimension_portfolio` | portfolio, oracle calls vs. SDP dimension at fixed precision |
-| `tables/precision_exponents.csv` | fitted exponent a in calls ~ eps^a, per solver and N |
-| `tables/logistics_table.csv` | logistics: relative error of the lower bound, oracle calls, time |
-| `tables/portfolio_table.csv` | portfolio: the safeguarded solver's threshold, certified interval, interior-point value, calls, time |
+| `precision_qubo` | synthetic QUBO-SDPs, oracle calls vs. precision: (a) N = 128, Hamiltonian Updates and safeguarded L-BFGS, with power-law fits; (b) safeguarded L-BFGS for N = 16 .. 1024 |
+| `dimension_qubo` | synthetic QUBO-SDPs, oracle calls vs. N at fixed precision |
+| `portfolio` | portfolio: (a) oracle calls vs. precision for n = 6 .. 14 assets, with a pooled fit; (b) oracle calls vs. SDP dimension at fixed precision |
 
 ## The searches
 
@@ -105,7 +99,7 @@ Each script runs its binary searches one after another, prints one line per
 feasibility query, and appends the results to `benchmark/results/<experiment>/`.
 Searches already in the results are skipped, so an interrupted run continues where
 it stopped; to recompute everything, move `benchmark/results/` away first, or write
-elsewhere with `--out DIR` (and `python benchmark/make_figures.py --results DIR`).
+elsewhere with `--out DIR` (and `python benchmark/figures/make_figures.py --results DIR`).
 `--help` lists each script's options; the defaults are the grids used in the paper.
 A quick subset:
 
